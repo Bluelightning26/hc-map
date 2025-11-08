@@ -31,11 +31,11 @@ const onConnected = (host) => {
 
   (async () => {
     let clubs = await fetch(
-      `https://api2.hackclub.com/v0.1/Club Applications/Clubs Dashboard`
+      `https://api2.hackclub.com/v0.1/Club-Map/Clubs`
     ).then((res) => res.json());
     clubs.forEach(({ fields: x }) => {
-      if (!x.Status || x.Status === "inactive") return;
-      if (!(x?.Latitude && x?.Longitude)) return;
+      if (!x?.Status || x?.['Club Status'] === "inactive") return;
+      if (!(x?.venue_lat && x?.venue_lng)) return;
 
       const style = `
           transform-origin: left top;
